@@ -34,6 +34,14 @@ func getProfile()(name string, gender string, age int)  {
 	return
 }
 
+func getTotal(numbers ...int) int  {
+	total := 0
+	for _, number := range numbers {
+		total += number
+	}
+	return total
+}
+
 func main() {
 	sayHello()
 	fmt.Println("")
@@ -41,6 +49,7 @@ func main() {
 	math(20, 3)
 	fmt.Println("")
 
+	//with param
 	fmt.Println("result:", compare(12, 3));
 	fmt.Println("")
 
@@ -54,5 +63,25 @@ func main() {
 	fmt.Println("name	:", nama)
 	fmt.Println("gender	:", gender)
 	fmt.Println("age	:", umur)
+
+	// variadic
+	fmt.Println("")
+	numbers := []int{10,10,10,10}
+
+	total := getTotal(10, 20, 30, 40)
+	fmt.Println("TOTAL:", total)
+
+	total = getTotal(numbers...)
+	fmt.Println("TOTAL:", total)
+
+	fmt.Println("")
+
+	//function value
+	hello := sayHello
+	hello()
+
+	comp := compare
+	fmt.Println("Result:", comp(2,3))
+	fmt.Println("")
 
 }

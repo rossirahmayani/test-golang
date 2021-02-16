@@ -6,6 +6,26 @@ type Address struct {
 	City, Province, Country string
 }
 
+func changeCountry(address Address, country string)  {
+	address.Country = country
+}
+
+func changeCountry2(address *Address, country string)  {
+	address.Country = country
+}
+
+type Woman struct {
+	Name string
+}
+
+func (woman *Woman) Married()  {
+	woman.Name = "Mrs. " + woman.Name
+}
+
+func (woman Woman) Single(){
+	woman.Name = "Miss " + woman.Name
+}
+
 func main() {
 
 	//pass by value
@@ -40,5 +60,21 @@ func main() {
 	var address6 *Address = new(Address)
 	address6.City = "Padang"
 	fmt.Println(address6)
+	fmt.Println("")
+
+	//pointer di function
+	address7 := Address{"Medan", "Sumatera Utara", ""}
+	changeCountry(address7, "Indonesia")
+	fmt.Println(address7) //country tidak berubah
+	changeCountry2(&address7, "Indonesia")
+	fmt.Println(address7) //country berubah
+	fmt.Println("")
+
+	//pointer di method
+	puff := Woman{"Puff"}
+	puff.Single()
+	fmt.Println(puff) //tidak berubah
+	puff.Married()
+	fmt.Println(puff) //berubah
 
 }
